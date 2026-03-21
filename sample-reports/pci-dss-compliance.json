@@ -1,0 +1,119 @@
+{
+  "report": {
+    "framework": "PCI DSS",
+    "version": "4.0",
+    "generated_at": "2026-03-15T10:00:00Z",
+    "project": "Acme Payment Service",
+    "scan_period": {
+      "from": "2026-02-15",
+      "to": "2026-03-15"
+    }
+  },
+  "summary": {
+    "total_controls": 17,
+    "passing": 12,
+    "failing": 4,
+    "not_applicable": 1,
+    "compliance_score": 70.6
+  },
+  "controls": [
+    {
+      "id": "2.2.1",
+      "title": "System configuration standards address all known vulnerabilities",
+      "status": "passing",
+      "findings_count": 0,
+      "evidence": "IaC scan of Terraform templates completed 2026-03-14. No misconfigurations detected in security group rules, IAM policies, or storage encryption settings."
+    },
+    {
+      "id": "3.5.1",
+      "title": "Primary account number secured wherever stored",
+      "status": "passing",
+      "findings_count": 0,
+      "evidence": "SAST scan confirmed all database write operations for PAN fields use AES-256 encryption. No plaintext PAN storage detected in 3 scans over the reporting period."
+    },
+    {
+      "id": "4.2.1",
+      "title": "Strong cryptography protects PAN during transmission",
+      "status": "passing",
+      "findings_count": 0,
+      "evidence": "DAST scan confirmed TLS 1.2+ on all endpoints handling cardholder data. No insecure cipher suites detected."
+    },
+    {
+      "id": "6.2.4",
+      "title": "Software engineering techniques prevent common coding vulnerabilities",
+      "status": "failing",
+      "findings_count": 7,
+      "evidence": "SAST scan identified 7 findings across injection categories.",
+      "findings": [
+        {
+          "id": "f-001",
+          "cwe": "CWE-89",
+          "severity": "critical",
+          "title": "SQL Injection via String Concatenation",
+          "file": "src/main/java/com/acme/dao/UserDAO.java:47",
+          "remediation_status": "open",
+          "discovered_at": "2026-03-15T09:14:00Z"
+        },
+        {
+          "id": "f-002",
+          "cwe": "CWE-79",
+          "severity": "high",
+          "title": "Reflected Cross-Site Scripting",
+          "file": "src/main/java/com/acme/servlet/SearchServlet.java:31",
+          "remediation_status": "open",
+          "discovered_at": "2026-03-15T09:14:22Z"
+        }
+      ]
+    },
+    {
+      "id": "6.3.1",
+      "title": "Security vulnerabilities identified and managed",
+      "status": "failing",
+      "findings_count": 14,
+      "evidence": "SCA scan identified 14 dependencies with known CVEs. 3 are critical severity.",
+      "findings": [
+        {
+          "id": "sca-001",
+          "cwe": "CWE-1035",
+          "severity": "critical",
+          "title": "Log4j Remote Code Execution (CVE-2021-44228)",
+          "component": "org.apache.logging.log4j:log4j-core@2.14.1",
+          "fixed_version": "2.17.1",
+          "remediation_status": "in_progress",
+          "discovered_at": "2026-03-10T08:00:00Z"
+        }
+      ]
+    },
+    {
+      "id": "8.3.1",
+      "title": "User authentication managed with strong authentication",
+      "status": "failing",
+      "findings_count": 1,
+      "evidence": "Secrets scan detected a hardcoded API key in deployment script.",
+      "findings": [
+        {
+          "id": "f-003",
+          "cwe": "CWE-798",
+          "severity": "high",
+          "title": "Hardcoded API Key",
+          "file": "scripts/deploy.py:12",
+          "remediation_status": "open",
+          "discovered_at": "2026-03-15T09:16:00Z"
+        }
+      ]
+    },
+    {
+      "id": "11.3.1",
+      "title": "Internal vulnerability scans performed",
+      "status": "passing",
+      "findings_count": 0,
+      "evidence": "12 SAST scans, 4 DAST scans, 8 SCA scans, and 12 secrets scans completed during the reporting period. Scan schedule: SAST weekly, DAST monthly, SCA weekly, secrets on every commit."
+    }
+  ],
+  "remediation_summary": {
+    "total_open": 22,
+    "critical_open": 3,
+    "mean_time_to_remediate_days": 4.2,
+    "oldest_open_finding_days": 12
+  }
+}

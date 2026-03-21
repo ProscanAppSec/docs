@@ -1,0 +1,75 @@
+{
+  "report": {
+    "type": "executive_summary",
+    "generated_at": "2026-03-15T10:30:00Z",
+    "period": {
+      "from": "2026-02-15",
+      "to": "2026-03-15"
+    },
+    "organization": "Acme Corp"
+  },
+  "security_posture": {
+    "score": 72,
+    "grade": "C",
+    "trend": "improving",
+    "previous_score": 64,
+    "score_change": 8
+  },
+  "scan_activity": {
+    "total_scans": 48,
+    "by_type": {
+      "sast": 12,
+      "dast": 4,
+      "sca": 8,
+      "secrets": 12,
+      "iac": 4,
+      "container": 4,
+      "api": 2,
+      "network": 2
+    },
+    "projects_scanned": 6,
+    "languages_covered": ["java", "javascript", "python", "go", "typescript"]
+  },
+  "findings_overview": {
+    "total_open": 47,
+    "new_this_period": 18,
+    "resolved_this_period": 29,
+    "by_severity": {
+      "critical": 3,
+      "high": 11,
+      "medium": 19,
+      "low": 14
+    },
+    "top_categories": [
+      {"cwe": "CWE-79", "name": "Cross-Site Scripting", "count": 8},
+      {"cwe": "CWE-89", "name": "SQL Injection", "count": 5},
+      {"cwe": "CWE-798", "name": "Hardcoded Credentials", "count": 4},
+      {"cwe": "CWE-22", "name": "Path Traversal", "count": 3},
+      {"cwe": "CWE-502", "name": "Insecure Deserialization", "count": 3}
+    ]
+  },
+  "remediation_metrics": {
+    "mean_time_to_remediate": {
+      "critical": "1.2 days",
+      "high": "3.8 days",
+      "medium": "8.4 days",
+      "low": "14.1 days"
+    },
+    "sla_compliance": {
+      "critical_within_48h": "100%",
+      "high_within_7d": "82%",
+      "medium_within_30d": "91%"
+    }
+  },
+  "compliance_status": {
+    "owasp_top10": {"passing": 8, "failing": 2, "score": 80},
+    "pci_dss_4": {"passing": 12, "failing": 4, "score": 71},
+    "soc2": {"passing": 7, "failing": 1, "score": 88},
+    "nist_800_53": {"passing": 14, "failing": 3, "score": 82}
+  },
+  "false_positive_rate": {
+    "current": 0.08,
+    "previous": 0.12,
+    "trend": "improving"
+  }
+}

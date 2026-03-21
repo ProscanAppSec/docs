@@ -1,0 +1,72 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Proscan Compliance Report",
+  "type": "object",
+  "properties": {
+    "report": {
+      "type": "object",
+      "properties": {
+        "framework": {"type": "string"},
+        "version": {"type": "string"},
+        "generated_at": {"type": "string", "format": "date-time"},
+        "project": {"type": "string"},
+        "scan_period": {
+          "type": "object",
+          "properties": {
+            "from": {"type": "string", "format": "date"},
+            "to": {"type": "string", "format": "date"}
+          }
+        }
+      },
+      "required": ["framework", "generated_at"]
+    },
+    "summary": {
+      "type": "object",
+      "properties": {
+        "total_controls": {"type": "integer"},
+        "passing": {"type": "integer"},
+        "failing": {"type": "integer"},
+        "not_applicable": {"type": "integer"},
+        "compliance_score": {"type": "number"}
+      }
+    },
+    "controls": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {"type": "string"},
+          "title": {"type": "string"},
+          "status": {"type": "string", "enum": ["passing", "failing", "not_applicable"]},
+          "findings_count": {"type": "integer"},
+          "evidence": {"type": "string"},
+          "findings": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {"type": "string"},
+                "cwe": {"type": "string"},
+                "severity": {"type": "string"},
+                "title": {"type": "string"},
+                "file": {"type": "string"},
+                "remediation_status": {"type": "string", "enum": ["open", "in_progress", "resolved", "accepted_risk"]},
+                "discovered_at": {"type": "string", "format": "date-time"}
+              }
+            }
+          }
+        },
+        "required": ["id", "title", "status"]
+      }
+    },
+    "remediation_summary": {
+      "type": "object",
+      "properties": {
+        "total_open": {"type": "integer"},
+        "critical_open": {"type": "integer"},
+        "mean_time_to_remediate_days": {"type": "number"},
+        "oldest_open_finding_days": {"type": "integer"}
+      }
+    }
+  }
+}

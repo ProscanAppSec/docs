@@ -1,0 +1,105 @@
+{
+  "scan": {
+    "id": "scan-48a7c3e1",
+    "type": "sast",
+    "target": "acme-webapp",
+    "started_at": "2026-03-15T09:12:00Z",
+    "completed_at": "2026-03-15T09:18:42Z",
+    "duration_seconds": 402,
+    "status": "completed",
+    "languages_detected": ["java", "javascript", "python", "sql"],
+    "files_scanned": 1847,
+    "lines_of_code": 284301
+  },
+  "summary": {
+    "total": 23,
+    "critical": 2,
+    "high": 5,
+    "medium": 9,
+    "low": 7,
+    "false_positive_rate": 0.08
+  },
+  "findings": [
+    {
+      "id": "f-001",
+      "rule_id": "java.sql-injection.string-concat",
+      "title": "SQL Injection via String Concatenation",
+      "description": "User-controlled input is concatenated directly into a SQL query without parameterization. An attacker can inject arbitrary SQL statements to read, modify, or delete database contents.",
+      "severity": "critical",
+      "confidence": 0.95,
+      "cwe": "CWE-89",
+      "file_path": "src/main/java/com/acme/dao/UserDAO.java",
+      "line_start": 47,
+      "line_end": 49,
+      "column_start": 12,
+      "column_end": 78,
+      "code_snippet": "String query = \"SELECT * FROM users WHERE email = '\" + email + \"'\";",
+      "remediation": {
+        "description": "Use parameterized queries instead of string concatenation",
+        "original_code": "String query = \"SELECT * FROM users WHERE email = '\" + email + \"'\";\nResultSet rs = stmt.executeQuery(query);",
+        "suggested_fix": "PreparedStatement pstmt = conn.prepareStatement(\"SELECT * FROM users WHERE email = ?\");\npstmt.setString(1, email);\nResultSet rs = pstmt.executeQuery();",
+        "diff": "- String query = \"SELECT * FROM users WHERE email = '\" + email + \"'\";\n- ResultSet rs = stmt.executeQuery(query);\n+ PreparedStatement pstmt = conn.prepareStatement(\"SELECT * FROM users WHERE email = ?\");\n+ pstmt.setString(1, email);\n+ ResultSet rs = pstmt.executeQuery();"
+      },
+      "compliance": {
+        "owasp_2021": "A03:2021 - Injection",
+        "pci_dss_4": "6.2.4",
+        "nist_800_53": "SI-10",
+        "iso_27001": "A.8.28"
+      }
+    },
+    {
+      "id": "f-002",
+      "rule_id": "java.xss.reflected",
+      "title": "Reflected Cross-Site Scripting (XSS)",
+      "description": "User input from the request parameter is written directly into the HTTP response without output encoding. An attacker can inject JavaScript that executes in other users' browsers.",
+      "severity": "high",
+      "confidence": 0.91,
+      "cwe": "CWE-79",
+      "file_path": "src/main/java/com/acme/servlet/SearchServlet.java",
+      "line_start": 31,
+      "line_end": 31,
+      "column_start": 8,
+      "column_end": 62,
+      "code_snippet": "out.println(\"<h2>Results for: \" + request.getParameter(\"q\") + \"</h2>\");",
+      "remediation": {
+        "description": "HTML-encode user input before writing to response",
+        "original_code": "out.println(\"<h2>Results for: \" + request.getParameter(\"q\") + \"</h2>\");",
+        "suggested_fix": "out.println(\"<h2>Results for: \" + StringEscapeUtils.escapeHtml4(request.getParameter(\"q\")) + \"</h2>\");",
+        "diff": "- out.println(\"<h2>Results for: \" + request.getParameter(\"q\") + \"</h2>\");\n+ out.println(\"<h2>Results for: \" + StringEscapeUtils.escapeHtml4(request.getParameter(\"q\")) + \"</h2>\");"
+      },
+      "compliance": {
+        "owasp_2021": "A03:2021 - Injection",
+        "pci_dss_4": "6.2.4",
+        "nist_800_53": "SI-10",
+        "iso_27001": "A.8.28"
+      }
+    },
+    {
+      "id": "f-003",
+      "rule_id": "python.hardcoded-secret.api-key",
+      "title": "Hardcoded API Key",
+      "description": "An API key is hardcoded in the source file. If this code is committed to version control, the key is exposed to anyone with repository access.",
+      "severity": "high",
+      "confidence": 0.88,
+      "cwe": "CWE-798",
+      "file_path": "scripts/deploy.py",
+      "line_start": 12,
+      "line_end": 12,
+      "column_start": 1,
+      "column_end": 52,
+      "code_snippet": "API_KEY = \"sk-a8f29c4e1b3d7f6a2e9c0d5b8a1f4e7c\"",
+      "remediation": {
+        "description": "Load the API key from an environment variable or secrets manager",
+        "original_code": "API_KEY = \"sk-a8f29c4e1b3d7f6a2e9c0d5b8a1f4e7c\"",
+        "suggested_fix": "API_KEY = os.environ.get(\"API_KEY\")",
+        "diff": "- API_KEY = \"sk-a8f29c4e1b3d7f6a2e9c0d5b8a1f4e7c\"\n+ API_KEY = os.environ.get(\"API_KEY\")"
+      },
+      "compliance": {
+        "owasp_2021": "A07:2021 - Identification and Authentication Failures",
+        "pci_dss_4": "8.6.1",
+        "nist_800_53": "IA-5",
+        "hipaa": "164.312(d)"
+      }
+    }
+  ]
+}

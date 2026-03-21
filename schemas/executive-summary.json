@@ -1,0 +1,100 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Proscan Executive Summary",
+  "type": "object",
+  "properties": {
+    "report": {
+      "type": "object",
+      "properties": {
+        "type": {"type": "string", "const": "executive_summary"},
+        "generated_at": {"type": "string", "format": "date-time"},
+        "period": {
+          "type": "object",
+          "properties": {
+            "from": {"type": "string", "format": "date"},
+            "to": {"type": "string", "format": "date"}
+          }
+        },
+        "organization": {"type": "string"}
+      }
+    },
+    "security_posture": {
+      "type": "object",
+      "properties": {
+        "score": {"type": "integer", "minimum": 0, "maximum": 100},
+        "grade": {"type": "string", "enum": ["A", "B", "C", "D", "E"]},
+        "trend": {"type": "string", "enum": ["improving", "stable", "degrading"]},
+        "previous_score": {"type": "integer"},
+        "score_change": {"type": "integer"}
+      }
+    },
+    "scan_activity": {
+      "type": "object",
+      "properties": {
+        "total_scans": {"type": "integer"},
+        "by_type": {"type": "object", "additionalProperties": {"type": "integer"}},
+        "projects_scanned": {"type": "integer"}
+      }
+    },
+    "findings_overview": {
+      "type": "object",
+      "properties": {
+        "total_open": {"type": "integer"},
+        "new_this_period": {"type": "integer"},
+        "resolved_this_period": {"type": "integer"},
+        "by_severity": {
+          "type": "object",
+          "properties": {
+            "critical": {"type": "integer"},
+            "high": {"type": "integer"},
+            "medium": {"type": "integer"},
+            "low": {"type": "integer"}
+          }
+        },
+        "top_categories": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "cwe": {"type": "string"},
+              "name": {"type": "string"},
+              "count": {"type": "integer"}
+            }
+          }
+        }
+      }
+    },
+    "remediation_metrics": {
+      "type": "object",
+      "properties": {
+        "mean_time_to_remediate": {
+          "type": "object",
+          "additionalProperties": {"type": "string"}
+        },
+        "sla_compliance": {
+          "type": "object",
+          "additionalProperties": {"type": "string"}
+        }
+      }
+    },
+    "compliance_status": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "passing": {"type": "integer"},
+          "failing": {"type": "integer"},
+          "score": {"type": "integer"}
+        }
+      }
+    },
+    "false_positive_rate": {
+      "type": "object",
+      "properties": {
+        "current": {"type": "number"},
+        "previous": {"type": "number"},
+        "trend": {"type": "string"}
+      }
+    }
+  }
+}

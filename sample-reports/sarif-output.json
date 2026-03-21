@@ -1,0 +1,115 @@
+{
+  "$schema": "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/master/Schemata/sarif-schema-2.1.0.json",
+  "version": "2.1.0",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "name": "Proscan",
+          "version": "1.0.10",
+          "informationUri": "https://proscan.one",
+          "rules": [
+            {
+              "id": "java.sql-injection.string-concat",
+              "name": "SQLInjectionStringConcat",
+              "shortDescription": {
+                "text": "SQL Injection via String Concatenation"
+              },
+              "fullDescription": {
+                "text": "User-controlled input is concatenated directly into a SQL query without parameterization."
+              },
+              "helpUri": "https://cwe.mitre.org/data/definitions/89.html",
+              "properties": {
+                "tags": ["security", "injection", "sql"],
+                "precision": "high",
+                "security-severity": "9.8"
+              }
+            },
+            {
+              "id": "java.xss.reflected",
+              "name": "ReflectedXSS",
+              "shortDescription": {
+                "text": "Reflected Cross-Site Scripting"
+              },
+              "fullDescription": {
+                "text": "User input is written directly into the HTTP response without output encoding."
+              },
+              "helpUri": "https://cwe.mitre.org/data/definitions/79.html",
+              "properties": {
+                "tags": ["security", "xss"],
+                "precision": "high",
+                "security-severity": "7.4"
+              }
+            }
+          ]
+        }
+      },
+      "results": [
+        {
+          "ruleId": "java.sql-injection.string-concat",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "SQL Injection via String Concatenation: User-controlled input is concatenated directly into a SQL query in UserDAO.java. Use parameterized queries instead."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/com/acme/dao/UserDAO.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 47,
+                  "startColumn": 12,
+                  "endLine": 49,
+                  "endColumn": 78
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "a1b2c3d4e5f6"
+          },
+          "properties": {
+            "proscan-finding-id": "f-001",
+            "cwe": "CWE-89",
+            "confidence": 0.95
+          }
+        },
+        {
+          "ruleId": "java.xss.reflected",
+          "ruleIndex": 1,
+          "level": "warning",
+          "message": {
+            "text": "Reflected Cross-Site Scripting: User input from request parameter is written directly into the response without encoding in SearchServlet.java."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/com/acme/servlet/SearchServlet.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 31,
+                  "startColumn": 8,
+                  "endLine": 31,
+                  "endColumn": 62
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "f6e5d4c3b2a1"
+          },
+          "properties": {
+            "proscan-finding-id": "f-002",
+            "cwe": "CWE-79",
+            "confidence": 0.91
+          }
+        }
+      ]
+    }
+  ]
+}

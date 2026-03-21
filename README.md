@@ -35,7 +35,21 @@ Documentation for [Proscan](https://proscan.one), the on-premises application se
 
 ### Compliance
 - [Supported Frameworks](compliance/frameworks.md)
+- [Methodology](compliance/methodology.md)
 - [Generating Reports](compliance/reports.md)
+
+### Sample Reports
+- [Overview](sample-reports/README.md)
+- [SAST Scan Results](sample-reports/sast-scan-results.json)
+- [PCI DSS Compliance Report](sample-reports/pci-dss-compliance.json)
+- [Executive Summary](sample-reports/executive-summary.json)
+- [SARIF Output](sample-reports/sarif-output.json)
+- [CycloneDX SBOM](sample-reports/cyclonedx-sbom.json)
+
+### Report Schemas
+- [Scan Results Schema](schemas/scan-results.json)
+- [Compliance Report Schema](schemas/compliance-report.json)
+- [Executive Summary Schema](schemas/executive-summary.json)
 
 ### Administration
 - [Users and Roles](administration/users-and-roles.md)
