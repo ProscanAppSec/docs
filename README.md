@@ -38,6 +38,14 @@ Documentation for [Proscan](https://proscan.one), the on-premises application se
 - [Methodology](compliance/methodology.md)
 - [Generating Reports](compliance/reports.md)
 
+### Whitepaper and Architecture
+- [Whitepaper](whitepaper/README.md)
+- [Entire Application Architecture Diagram](architecture/application-architecture.md)
+- [Scanner Architecture Diagrams](architecture/scanner-architectures.md)
+
+### Benchmark
+- [Benchmark Methodology and Results Template](benchmark/README.md)
+
 ### Sample Reports
 - [Overview](sample-reports/README.md)
 - [SAST Scan Results](sample-reports/sast-scan-results.json)
