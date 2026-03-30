@@ -46,6 +46,16 @@ Documentation for [Proscan](https://proscan.one), the on-premises application se
 ### Benchmark
 - [Benchmark Methodology and Results Template](benchmark/README.md)
 
+### Engineering Proofs
+- [Detection Methodology](engineering/detection-methodology.md) — algorithm taxonomy with formal pseudocode
+- [Rule Format and Samples](engineering/rule-format.md) — rule schema with representative examples
+- [Taint Analysis Model](engineering/taint-analysis.md) — formal source-to-sink propagation specification
+- [False Positive Engineering](engineering/fp-engineering.md) — 11-stage suppression pipeline and evidence-based verification
+- [Confidence Scoring Model](engineering/confidence-model.md) — 7-factor weighted scoring formula with calibration rationale
+- [Detection Coverage Matrix](engineering/coverage-matrix.md) — CWE × scanner coverage table
+- [Fuzzing Methodology](engineering/fuzzing-methodology.md) — payload mutation strategies and detection logic
+- [Precision and Recall](engineering/precision-recall.md) — measurement methodology and ground-truth test suites
+
 ### Sample Reports
 - [Overview](sample-reports/README.md)
 - [SAST Scan Results](sample-reports/sast-scan-results.json)
