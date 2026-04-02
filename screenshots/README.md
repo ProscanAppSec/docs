@@ -32,6 +32,10 @@ The unified dashboard shows your security posture across all active scanners —
 
 <video src="videos/sast-dashboard-30s.mp4" width="100%" controls></video>
 
+### Video: SAST Findings Walkthrough (37 seconds)
+
+<video src="videos/sast-findings-37s.mp4" width="100%" controls></video>
+
 ### Configure and Start a Scan
 
 Browse a local folder, connect to a remote Git repository, or upload an archive. Choose from Standard, Quick Scan, Deep Analysis, or OWASP Top 10 profiles.
@@ -119,6 +123,24 @@ Real-time scan metrics: progress percentage, URLs discovered, parameters tested,
 Findings listed with severity, verification status, URL, and parameter. Verified badge indicates findings confirmed by the engine (not just detected).
 
 ![DAST Deep Findings](dast-deep-findings.png)
+
+---
+
+## All Scanners Overview (60 seconds)
+
+<video src="videos/scanners-overview-60s.mp4" width="100%" controls></video>
+
+---
+
+## Full Product Demo Clips
+
+### Getting Started Guide (45 seconds)
+
+<video src="videos/guide-intro-45s.mp4" width="100%" controls></video>
+
+### Product Demo (45 seconds)
+
+<video src="videos/ready-demo-45s.mp4" width="100%" controls></video>
 
 ---
 
