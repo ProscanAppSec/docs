@@ -2,6 +2,8 @@
 
 Documentation for [Proscan](https://proscan.one), the on-premises application security platform.
 
+<video src="screenshots/videos/proscan-overview-21s.mp4" width="100%" controls></video>
+
 ## Contents
 
 ### Getting Started

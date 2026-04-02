@@ -1,10 +1,24 @@
-# Proscan Screenshots
+# Proscan Screenshots and Videos
 
-Real screenshots from Proscan v9.0 Enterprise. All screenshots show actual scan results on real targets.
+Real screenshots and video clips from Proscan v9.0 Enterprise. All content shows actual scan results on real targets.
+
+---
+
+## Video: Product Overview (21 seconds)
+
+<video src="videos/proscan-overview-21s.mp4" width="100%" controls></video>
+
+## Video: Product Highlights (83 seconds)
+
+<video src="videos/proscan-highlights-83s.mp4" width="100%" controls></video>
 
 ---
 
 ## Security Command Center
+
+### Video: Dashboard Preview (7 seconds)
+
+<video src="videos/dashboard-preview-7s.mp4" width="100%" controls></video>
 
 The unified dashboard shows your security posture across all active scanners — total findings, severity breakdown, 7-day trend, and real-time scanner status.
 
@@ -13,6 +27,10 @@ The unified dashboard shows your security posture across all active scanners —
 ---
 
 ## SAST — Static Analysis
+
+### Video: SAST Dashboard (30 seconds)
+
+<video src="videos/sast-dashboard-30s.mp4" width="100%" controls></video>
 
 ### Configure and Start a Scan
 
@@ -75,6 +93,14 @@ Identifies all cryptographic algorithms used in the binary — algorithm type, k
 ---
 
 ## DAST — Dynamic Analysis
+
+### Video: Live Scan Progress (19 seconds)
+
+<video src="videos/dast-live-progress-19s.mp4" width="100%" controls></video>
+
+### Video: Deep Scan Findings (34 seconds)
+
+<video src="videos/dast-deep-findings-34s.mp4" width="100%" controls></video>
 
 ### Configure Target
 
