@@ -1,39 +1,50 @@
 # System Requirements
 
-Proscan runs entirely on your infrastructure. Below are the minimum and recommended specs.
-
-## Operating System
-
-| OS | Minimum Version |
-|----|----------------|
-| Windows | 10 (64-bit) or Server 2019 |
-| Linux | Ubuntu 20.04, Debian 11, RHEL 8, or equivalent |
-| macOS | 13 Ventura (Apple Silicon) |
-
 ## Hardware
 
 | Resource | Minimum | Recommended |
 |----------|---------|-------------|
+| RAM | 8 GB | 16 GB |
 | CPU | 4 cores | 8 cores |
-| RAM | 16 GB | 32 GB |
-| Disk | 20 GB free | 50 GB+ free |
+| Disk | 20 GB free | 50 GB free |
 
-Disk usage grows over time as scan results accumulate. Plan accordingly if you're scanning large codebases or running frequent scans.
+## Software
+
+| Component | Required |
+|-----------|----------|
+| Docker | Docker Desktop (Windows/macOS) or Docker Engine (Linux) |
+| OS | Windows 10+ (x64), macOS 12+ (Intel or Apple Silicon), Linux (x64) |
+
+## Docker Resource Allocation
+
+If using Docker Desktop, ensure sufficient resources are allocated:
+
+- Docker Desktop → Settings → Resources
+- At least **8 GB RAM** and **4 CPUs** assigned to Docker
+
+## Default Container Resources
+
+| Container | Memory | CPUs | Purpose |
+|-----------|--------|------|---------|
+| Backend | 8 GB | 4.0 | API, web UI, scanner modules |
+| PostgreSQL | 2 GB | 2.0 | Scan results, findings, configurations |
+| Redis | 768 MB | 0.5 | Job queue, caching |
+
+These can be adjusted in the launcher settings after installation.
 
 ## Network
 
-Proscan does not require a persistent internet connection after initial activation. It supports fully air-gapped deployments.
+- Internet access required for initial setup, license activation, and package download
+- After setup, Proscan runs fully offline (within license period)
+- Air-gapped deployments supported with offline license activation
 
-An outbound connection is needed only for:
-- License activation (one-time)
-- Downloading updates (when available)
+## Ports
 
-All scanning and analysis happens locally. No source code, scan results, or telemetry data is transmitted externally.
+| Port | Service | Default Binding |
+|------|---------|----------------|
+| 9090 | Launcher UI (Docker option) | localhost only |
+| 18080 | Proscan web interface | localhost only |
+| 15432 | PostgreSQL (internal) | localhost only |
+| 16379 | Redis (internal) | localhost only |
 
-## Browser
-
-The web interface works in any modern browser:
-- Chrome 90+
-- Firefox 90+
-- Edge 90+
-- Safari 15+
+All ports are configurable during setup.

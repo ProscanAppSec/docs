@@ -1,32 +1,39 @@
 # Updating Proscan
 
-Proscan checks for updates automatically when connected to the internet. You can also check manually from the launcher.
-
 ## How Updates Work
 
-When an update is available, the launcher notifies you and offers to download the new version. Updates include new scanner rules, detection improvements, bug fixes, and new features.
+Proscan updates replace only the backend images. All your data is preserved:
+- Scan results and findings
+- Project configurations
+- User accounts and permissions
+- Compliance reports
+- Triage decisions and notes
 
-The update process:
+## Check for Updates
 
-1. The launcher downloads the update package
-2. Services are stopped briefly
-3. The new version replaces the previous one
-4. Services restart automatically
+From the launcher dashboard, click **"Check Updates"**. The launcher checks for new versions automatically via periodic heartbeats.
 
-Your scan history, project configuration, and all existing data are preserved across updates.
+## Apply an Update
 
-## Updating in Air-Gapped Environments
+1. Click **"Update"** when a new version is available
+2. The launcher stops running services
+3. The new backend image is downloaded and verified
+4. Services restart with the updated version
+5. Database migrations run automatically if needed
 
-For deployments without internet access:
+The update process takes 1-3 minutes depending on your connection speed.
 
-1. Download the updated package from your account on a machine with connectivity
-2. Transfer the package file to the air-gapped machine
-3. Import the update through the launcher
+## Rollback
 
-## Version Information
+If an update causes issues, contact [support@proscan.one](mailto:support@proscan.one) for rollback assistance. Your data is preserved across updates, so rolling back to a previous version is straightforward.
 
-You can check your current version from the web interface under **Settings > About** or from the launcher status screen.
+## Backup Before Updating
 
-## Update Policy
+It's good practice to create a backup before applying updates:
 
-All updates released during your active license period are included at no additional cost. This covers rule updates, new scanner capabilities, and platform improvements.
+1. Go to the launcher dashboard
+2. Click **"Create Backup"**
+3. Set a password for the backup file
+4. Save the `.gpbak` file
+
+Backups can be restored from the same dashboard.

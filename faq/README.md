@@ -84,4 +84,4 @@ See our [Evaluation Guide](../evaluation-guide/README.md) for methodology, test 
 
 **Is there a trial version?**
 
-We offer a 7-day demo launcher — see the [download repository](https://github.com/Proscan-hub/download) for details.
+We offer a 15-day free trial — see the [download page](https://proscan.one/download) for details.
